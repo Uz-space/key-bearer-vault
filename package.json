@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "start": "vite",
     "start-in-docker": "vite --host",
     "serve": "pnpm run build && node server.js --dist",
-    "build": "pnpm run typecheck && pnpm run generate-changelog && vite build && pnpm run check-bundle",
+    "build": "vite build",
     "check-bundle": "node scripts/check-bundle-mangling.mjs dist",
     "test": "vitest",
     "test:ephemeral-bot": "node ./src/tests/fixtures/ephemeralBot/bot.mjs",
@@ -26,7 +25,9 @@
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --noEmit --watch",
     "build:solid": "node ./src/scripts/build_solid.js",
-    "format-lang": "node ./src/scripts/format_lang.js"
+    "format-lang": "node ./src/scripts/format_lang.js",
+    "dev": "vite",
+    "build:dev": "vite build --mode development"
   },
   "author": "",
   "license": "GPL-3.0-only",

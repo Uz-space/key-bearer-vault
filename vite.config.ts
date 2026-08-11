@@ -66,7 +66,8 @@ const USE_DEV_HTTP2 = !USE_SSL && !process.env.TWEB_PREVIEW && !process.env.VITE
   existsSync(DEV_HTTP2_KEY) && existsSync(DEV_HTTP2_CERT);
 
 const serverOptions: ServerOptions = {
-  host,
+  host: true,
+  allowedHosts: true,
   port: USE_SSL ? 443 : 8080,
   watch: {
     // NB: anchor on rootDir. A worktree checkout's own path contains
