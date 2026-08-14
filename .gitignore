@@ -30,3 +30,15 @@ ignore
 
 .claude/bugs-cache
 .pnpm-store/
+
+# Build output must never be committed into public/
+/public/*.js
+/public/*.js.map
+/public/*.css
+/public/*.map
+/public/index.html
+!/public/decoderWorker.min.js
+!/public/encoderWorker.min.js
+!/public/recorder.min.js
+!/public/waveWorker.min.js
+tsconfig.tsbuildinfo
