@@ -194,7 +194,9 @@ export default defineConfig({
     cssTarget: ['chrome87', 'edge87', 'firefox78', 'safari14.1'],
     sourcemap: true,
     assetsDir: '',
-    copyPublicDir: false,
+    // Plain Vite is the production builder in this project, so it must copy the
+    // runtime assets (tgico fonts, emoji sprites, workers, images) into dist.
+    copyPublicDir: true,
     emptyOutDir: true,
     minify: NO_MINIFY ? false : undefined,
     rolldownOptions: {
