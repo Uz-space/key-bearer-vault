@@ -108,31 +108,10 @@ export function renderPendingSuggestion(toElement: HTMLElement) {
   toElement.classList.add(styles.container);
 
   render(() => {
-    const birthdaySuggestions = createBirthdaySuggestions();
-    const suggestions: Record<PendingSuggestionType, PendingSuggestionController> = {
-      frozen: createFrozenSuggestion(),
-      notifications: createNotificationsSuggestion(),
-      passkey: createPasskeySetupSuggestion(),
-      birthdayContacts: birthdaySuggestions.contacts,
-      birthdaySetup: birthdaySuggestions.setup
-    };
-    createEmailSetupSuggestion();
-
     const [element, setElement] = createSignal<JSX.Element>();
-    const botConnectionReviews = useBotConnectionReviews();
-    const suggestionConstructor = createMemo(() => {
-      if(botConnectionReviews().length) {
-        return BotConnectionReviewSuggestion;
-      }
-
-      // all pending suggestions are disabled
-      const type = selectPendingSuggestion({});
-    });
 
     createEffect(() => {
-      const constructor = suggestionConstructor();
-      const element = constructor ? (<div class={styles.suggestionContainer}>{constructor()}</div>) : undefined;
-      setElement(element);
+      setElement(undefined);
     });
 
     createEffect(() => {
