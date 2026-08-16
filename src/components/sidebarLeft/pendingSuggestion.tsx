@@ -125,12 +125,9 @@ export function renderPendingSuggestion(toElement: HTMLElement) {
         return BotConnectionReviewSuggestion;
       }
 
+      // only the frozen-account warning is shown; promo suggestions are disabled
       const type = selectPendingSuggestion({
-        frozen: suggestions.frozen.available(),
-        notifications: suggestions.notifications.available(),
-        passkey: suggestions.passkey.available(),
-        birthdayContacts: suggestions.birthdayContacts.available(),
-        birthdaySetup: suggestions.birthdaySetup.available()
+        frozen: suggestions.frozen.available()
       });
 
       return type ? suggestions[type].component : undefined;
